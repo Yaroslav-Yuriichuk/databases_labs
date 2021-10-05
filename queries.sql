@@ -12,7 +12,7 @@ ORDER BY type desc;
 -- друге слово не закінчується на літеру 'c'.
 SELECT name
 FROM battles
-WHERE name NOT LIKE '%c' AND name LIKE '% %' AND NOT name LIKE '% % %';
+WHERE name NOT LIKE '%c' AND name LIKE '% %' AND name NOT LIKE '% % %';
 
 
 -- Для кораблів таблиці Ships вивести країни, яким 
@@ -41,7 +41,7 @@ SELECT name, launched, displacement
 FROM ships
 INNER JOIN classes
 ON ships.class = classes.class
-WHERE ships.launched IS NOT NULL AND classes.displacement <= 35000;
+WHERE ships.launched IS NOT NULL AND classes.displacement > 35000;
 
 
 -- Для таблиці PC вивести всю інформацію з 
