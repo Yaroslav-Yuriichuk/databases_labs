@@ -69,7 +69,7 @@ CREATE TABLE `yuriichuk`.`address` (
   `street` VARCHAR(45) NOT NULL,
   `building` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `address_region_idx` (`region` ASC) VISIBLE)
+  INDEX `address_city_village_idx` (`city_village` ASC) VISIBLE)
 ENGINE = InnoDB;
 
 
