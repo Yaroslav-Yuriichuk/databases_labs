@@ -2,8 +2,10 @@ package com.yuriichuk.view;
 
 import com.yuriichuk.controller.implementation.AddressController;
 import com.yuriichuk.controller.implementation.BrandController;
+import com.yuriichuk.controller.implementation.SnackController;
 import com.yuriichuk.model.Address;
 import com.yuriichuk.model.Brand;
+import com.yuriichuk.model.Snack;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -16,6 +18,7 @@ public class View {
 
     private final AddressController addressController = new AddressController();
     private final BrandController brandController = new BrandController();
+    private final SnackController snackController = new SnackController();
 
     public View() {
         menu.put("11", this::getAllAdresses);
@@ -29,6 +32,12 @@ public class View {
         menu.put("23", this::createBrand);
         menu.put("24", this::updateBrand);
         menu.put("25", this::deleteBrand);
+
+        menu.put("41", this::getAllSnacks);
+        menu.put("42", this::getSnackById);
+        menu.put("43", this::createSnack);
+        menu.put("44", this::updateSnack);
+        menu.put("45", this::deleteSnack);
     }
 
 
@@ -81,6 +90,7 @@ public class View {
 
 
 
+
     private void getAllBrands() throws SQLException {
         System.out.println("");
         brandController.findAll().forEach(System.out::println);
@@ -123,6 +133,58 @@ public class View {
 
         return new Brand(name, date);
     }
+
+
+
+    private void getAllSnacks() throws SQLException {
+        System.out.println("");
+        snackController.findAll().forEach(System.out::println);
+        System.out.println("");
+    }
+
+    private void getSnackById() throws SQLException {
+        System.out.println("");
+        Integer id = readId("Type id:");
+        System.out.println("\n" + snackController.findById(id));
+        System.out.println("");
+    }
+
+    private void createSnack() throws SQLException {
+        System.out.println("");
+        snackController.create(getSnackFromInput());
+        System.out.println("");
+    }
+
+    private void updateSnack() throws SQLException {
+        Integer id = readId("Type id:");
+        Snack snack = getSnackFromInput();
+        snack.setId(id);
+        snackController.update(snack);
+        System.out.println("");
+
+    }
+
+    private void deleteSnack() throws SQLException {
+        Integer id = readId("Type id:");
+        snackController.delete(id);
+        System.out.println("");
+    }
+
+    private Snack getSnackFromInput() {
+        System.out.println("Type name:");
+        String name = scanner.nextLine().replaceAll(" ", "");
+        System.out.println("Type price:");
+        Float price = Float.parseFloat(scanner.nextLine().replaceAll(" ", ""));
+        System.out.println("Type weight:");
+        Integer weight = Integer.parseInt(scanner.nextLine().replaceAll(" ", ""));
+        System.out.println("Type callories:");
+        Integer callories = Integer.parseInt(scanner.nextLine().replaceAll(" ", ""));
+        System.out.println("Type brand id:");
+        Integer brandId = Integer.parseInt(scanner.nextLine().replaceAll(" ", ""));
+
+        return new Snack(name, price, weight, callories, brandId);
+    }
+
 
 
     private Integer readId(String message) {
