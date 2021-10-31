@@ -1,5 +1,6 @@
 package com.yuriichuk.view;
 
+import com.yuriichuk.DAO.implementation.VendingMachineMenuDAO;
 import com.yuriichuk.controller.implementation.*;
 import com.yuriichuk.model.*;
 
@@ -17,6 +18,7 @@ public class View {
     private final SnackController snackController = new SnackController();
     private final TechnicianController technicianController = new TechnicianController();
     private final VendingMachineController vendingMachineController = new VendingMachineController();
+    private final VendingMachineMenuController vendingMachineMenuController = new VendingMachineMenuController();
 
     public View() {
         menu.put("11", this::getAllAdresses);
@@ -48,6 +50,12 @@ public class View {
         menu.put("63", this::createVendingMachine);
         menu.put("64", this::updateVendingMachine);
         menu.put("65", this::deleteVendingMachine);
+
+        menu.put("81", this::getAllVendingMachineMenus);
+        menu.put("82", this::getVendingMachineMenuById);
+        menu.put("83", this::createVendingMachineMenu);
+        menu.put("84", this::updateVendingMachineMenu);
+        menu.put("85", this::deleteVendingMachineMenu);
     }
 
 
@@ -287,6 +295,48 @@ public class View {
         Integer addressId = Integer.parseInt(scanner.nextLine().replaceAll(" ", ""));
 
         return new VendingMachine(coordinates, addressId);
+    }
+
+
+
+    private void getAllVendingMachineMenus() throws SQLException {
+        System.out.println("");
+        vendingMachineMenuController.findAll().forEach(System.out::println);
+        System.out.println("");
+    }
+
+    private void getVendingMachineMenuById() throws SQLException {
+        System.out.println("");
+        Integer vendingMachineId = readId("Type vending machine id:");
+        Integer snackId = readId("Type snack id");
+        System.out.println("\n" + vendingMachineMenuController.findById(vendingMachineId, snackId));
+        System.out.println("");
+    }
+
+    private void createVendingMachineMenu() throws SQLException {
+        System.out.println("");
+        vendingMachineMenuController.create(getVendingMachineMenuFromInput());
+        System.out.println("");
+    }
+
+    private void updateVendingMachineMenu() throws SQLException {
+        System.out.println("");
+        System.out.println("Not possible");
+        System.out.println("");
+    }
+
+    private void deleteVendingMachineMenu() throws SQLException {
+        Integer vendingMachineId = readId("Type vending machine id:");
+        Integer snackId = readId("Type snack id");
+        vendingMachineMenuController.delete(vendingMachineId, snackId);
+        System.out.println("");
+    }
+
+    private VendingMachineMenu getVendingMachineMenuFromInput() {
+        Integer vendingMachineId = readId("Type vending machine id:");
+        Integer snackId = readId("Type snack id");
+
+        return new VendingMachineMenu(vendingMachineId, snackId);
     }
 
 
