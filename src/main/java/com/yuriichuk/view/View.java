@@ -3,9 +3,11 @@ package com.yuriichuk.view;
 import com.yuriichuk.controller.implementation.AddressController;
 import com.yuriichuk.controller.implementation.BrandController;
 import com.yuriichuk.controller.implementation.SnackController;
+import com.yuriichuk.controller.implementation.TechnicianController;
 import com.yuriichuk.model.Address;
 import com.yuriichuk.model.Brand;
 import com.yuriichuk.model.Snack;
+import com.yuriichuk.model.Technician;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -19,6 +21,7 @@ public class View {
     private final AddressController addressController = new AddressController();
     private final BrandController brandController = new BrandController();
     private final SnackController snackController = new SnackController();
+    private final TechnicianController technicianController = new TechnicianController();
 
     public View() {
         menu.put("11", this::getAllAdresses);
@@ -38,6 +41,12 @@ public class View {
         menu.put("43", this::createSnack);
         menu.put("44", this::updateSnack);
         menu.put("45", this::deleteSnack);
+
+        menu.put("51", this::getAllTechnicians);
+        menu.put("52", this::getTechnicianById);
+        menu.put("53", this::createTechnician);
+        menu.put("54", this::updateTechnician);
+        menu.put("55", this::deleteTechnician);
     }
 
 
@@ -183,6 +192,55 @@ public class View {
         Integer brandId = Integer.parseInt(scanner.nextLine().replaceAll(" ", ""));
 
         return new Snack(name, price, weight, callories, brandId);
+    }
+
+
+
+    private void getAllTechnicians() throws SQLException {
+        System.out.println("");
+        technicianController.findAll().forEach(System.out::println);
+        System.out.println("");
+    }
+
+    private void getTechnicianById() throws SQLException {
+        System.out.println("");
+        Integer id = readId("Type id:");
+        System.out.println("\n" + technicianController.findById(id));
+        System.out.println("");
+    }
+
+    private void createTechnician() throws SQLException {
+        System.out.println("");
+        technicianController.create(getTechnicianFromInput());
+        System.out.println("");
+    }
+
+    private void updateTechnician() throws SQLException {
+        Integer id = readId("Type id:");
+        Technician technician = getTechnicianFromInput();
+        technician.setId(id);
+        technicianController.update(technician);
+        System.out.println("");
+
+    }
+
+    private void deleteTechnician() throws SQLException {
+        Integer id = readId("Type id:");
+        technicianController.delete(id);
+        System.out.println("");
+    }
+
+    private Technician getTechnicianFromInput() {
+        System.out.println("Type first name:");
+        String firstName = scanner.nextLine().replaceAll(" ", "");
+        System.out.println("Type second name:");
+        String lastName = scanner.nextLine().replaceAll(" ", "");
+        System.out.println("Type age:");
+        Integer age = Integer.parseInt(scanner.nextLine().replaceAll(" ", ""));
+        System.out.println("Type work entry date:");
+        String workEntryDate = scanner.nextLine().replaceAll(" ", "");
+
+        return new Technician(firstName, lastName, age, workEntryDate);
     }
 
 

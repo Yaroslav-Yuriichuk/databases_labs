@@ -11,6 +11,10 @@ public interface AbstractDAO<E> {
         return null;
     }
 
+    default E findById(Integer firstId, Integer secondId) throws SQLException {
+        return null;
+    }
+
     default void create(E entity) throws SQLException {}
 
     default void update(E entity) throws SQLException {}
