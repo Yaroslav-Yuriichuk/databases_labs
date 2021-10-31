@@ -1,13 +1,7 @@
 package com.yuriichuk.view;
 
-import com.yuriichuk.controller.implementation.AddressController;
-import com.yuriichuk.controller.implementation.BrandController;
-import com.yuriichuk.controller.implementation.SnackController;
-import com.yuriichuk.controller.implementation.TechnicianController;
-import com.yuriichuk.model.Address;
-import com.yuriichuk.model.Brand;
-import com.yuriichuk.model.Snack;
-import com.yuriichuk.model.Technician;
+import com.yuriichuk.controller.implementation.*;
+import com.yuriichuk.model.*;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -22,6 +16,7 @@ public class View {
     private final BrandController brandController = new BrandController();
     private final SnackController snackController = new SnackController();
     private final TechnicianController technicianController = new TechnicianController();
+    private final VendingMachineController vendingMachineController = new VendingMachineController();
 
     public View() {
         menu.put("11", this::getAllAdresses);
@@ -47,6 +42,12 @@ public class View {
         menu.put("53", this::createTechnician);
         menu.put("54", this::updateTechnician);
         menu.put("55", this::deleteTechnician);
+
+        menu.put("61", this::getAllVendingMachines);
+        menu.put("62", this::getVendingMachineById);
+        menu.put("63", this::createVendingMachine);
+        menu.put("64", this::updateVendingMachine);
+        menu.put("65", this::deleteVendingMachine);
     }
 
 
@@ -241,6 +242,51 @@ public class View {
         String workEntryDate = scanner.nextLine().replaceAll(" ", "");
 
         return new Technician(firstName, lastName, age, workEntryDate);
+    }
+
+
+
+    private void getAllVendingMachines() throws SQLException {
+        System.out.println("");
+        vendingMachineController.findAll().forEach(System.out::println);
+        System.out.println("");
+    }
+
+    private void getVendingMachineById() throws SQLException {
+        System.out.println("");
+        Integer id = readId("Type id:");
+        System.out.println("\n" + vendingMachineController.findById(id));
+        System.out.println("");
+    }
+
+    private void createVendingMachine() throws SQLException {
+        System.out.println("");
+        vendingMachineController.create(getVendingMachineFromInput());
+        System.out.println("");
+    }
+
+    private void updateVendingMachine() throws SQLException {
+        Integer id = readId("Type id:");
+        VendingMachine vendingMachine = getVendingMachineFromInput();
+        vendingMachine.setId(id);
+        vendingMachineController.update(vendingMachine);
+        System.out.println("");
+
+    }
+
+    private void deleteVendingMachine() throws SQLException {
+        Integer id = readId("Type id:");
+        vendingMachineController.delete(id);
+        System.out.println("");
+    }
+
+    private VendingMachine getVendingMachineFromInput() {
+        System.out.println("Type coordinates:");
+        String coordinates = scanner.nextLine().replaceAll(" ", ", ");
+        System.out.println("Type address id:");
+        Integer addressId = Integer.parseInt(scanner.nextLine().replaceAll(" ", ""));
+
+        return new VendingMachine(coordinates, addressId);
     }
 
 
