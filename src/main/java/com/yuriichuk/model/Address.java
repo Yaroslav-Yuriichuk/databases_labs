@@ -21,10 +21,7 @@ public class Address {
     }
 
     public Address(String region, String cityVillage, String street, String building) {
-        this.region = region;
-        this.cityVillage = cityVillage;
-        this.street = street;
-        this.building = building;
+        this(null, region, cityVillage, street, building);
     }
 
     @Override

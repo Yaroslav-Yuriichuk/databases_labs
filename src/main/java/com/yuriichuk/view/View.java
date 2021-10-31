@@ -1,7 +1,9 @@
 package com.yuriichuk.view;
 
 import com.yuriichuk.controller.implementation.AddressController;
+import com.yuriichuk.controller.implementation.BrandController;
 import com.yuriichuk.model.Address;
+import com.yuriichuk.model.Brand;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -13,6 +15,7 @@ public class View {
     private final Map<String, Printable> menu = new HashMap<String, Printable>();
 
     private final AddressController addressController = new AddressController();
+    private final BrandController brandController = new BrandController();
 
     public View() {
         menu.put("11", this::getAllAdresses);
@@ -20,6 +23,12 @@ public class View {
         menu.put("13", this::createAdress);
         menu.put("14", this::updateAdress);
         menu.put("15", this::deleteAdress);
+
+        menu.put("21", this::getAllBrands);
+        menu.put("22", this::getBrandById);
+        menu.put("23", this::createBrand);
+        menu.put("24", this::updateBrand);
+        menu.put("25", this::deleteBrand);
     }
 
 
@@ -69,6 +78,52 @@ public class View {
 
         return new Address(region, cityVillage, street, building);
     }
+
+
+
+    private void getAllBrands() throws SQLException {
+        System.out.println("");
+        brandController.findAll().forEach(System.out::println);
+        System.out.println("");
+    }
+
+    private void getBrandById() throws SQLException {
+        System.out.println("");
+        Integer id = readId("Type id:");
+        System.out.println("\n" + brandController.findById(id));
+        System.out.println("");
+    }
+
+    private void createBrand() throws SQLException {
+        System.out.println("");
+        brandController.create(getBrandFromInput());
+        System.out.println("");
+    }
+
+    private void updateBrand() throws SQLException {
+        Integer id = readId("Type id:");
+        Brand brand = getBrandFromInput();
+        brand.setId(id);
+        brandController.update(brand);
+        System.out.println("");
+
+    }
+
+    private void deleteBrand() throws SQLException {
+        Integer id = readId("Type id:");
+        brandController.delete(id);
+        System.out.println("");
+    }
+
+    private Brand getBrandFromInput() {
+        System.out.println("Type name:");
+        String name = scanner.nextLine().replaceAll(" ", "");
+        System.out.println("Type date:");
+        String date = scanner.nextLine().replaceAll(" ", "");
+
+        return new Brand(name, date);
+    }
+
 
     private Integer readId(String message) {
         System.out.println(message);
