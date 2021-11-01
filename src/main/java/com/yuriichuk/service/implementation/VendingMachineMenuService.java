@@ -27,6 +27,11 @@ public class VendingMachineMenuService implements AbstractService<VendingMachine
     }
 
     @Override
+    public void update(VendingMachineMenu vendingMachineMenu) throws SQLException {
+        dao.update(vendingMachineMenu);
+    }
+
+    @Override
     public void delete(Integer firstId, Integer secondId) throws SQLException {
         dao.delete(firstId, secondId);
     }

@@ -7,11 +7,17 @@ import lombok.Setter;
 @Setter
 public class VendingMachineMenu {
     private Integer vendingMachineId;
-    private  Integer snackId;
+    private Integer snackId;
+    private Integer quantity;
 
-    public VendingMachineMenu(Integer vendingMachineId, Integer snackId) {
+    public VendingMachineMenu(Integer vendingMachineId, Integer snackId, Integer quantity) {
         this.vendingMachineId = vendingMachineId;
         this.snackId = snackId;
+        this.quantity = quantity;
+    }
+
+    public VendingMachineMenu(Integer quantity) {
+        this(null, null, quantity);
     }
 
     @Override
@@ -19,6 +25,7 @@ public class VendingMachineMenu {
         return "VendingMachineMenu {" +
                 "vendingMachineId=" + vendingMachineId +
                 ", snackId=" + snackId +
+                ", quantity=" + quantity +
                 '}';
     }
 }

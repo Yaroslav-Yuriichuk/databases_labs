@@ -17,7 +17,10 @@ public class VendingMachineMenuDAO implements AbstractDAO<VendingMachineMenu> {
     private static final String GET_BY_ID = "SELECT * FROM yuriichuk.vending_machine_menu" +
             " WHERE vending_machine_id=? and snack_id=?";
     private static final String CREATE = "INSERT INTO yuriichuk.vending_machine_menu " +
-            "(vending_machine_id, snack_id) VALUES (?, ?);";
+            "(vending_machine_id, snack_id, quantity) VALUES (?, ?, ?);";
+    private static final String UPDATE = "UPDATE yuriichuk.vending_machine_menu" +
+            " SET `quantity` = ?" +
+            " WHERE (`vending_machine_id` = ?) and (`snack_id` = ?);";
     private static final String DELETE = "DELETE FROM yuriichuk.vending_machine_menu" +
             " WHERE vending_machine_id=? and snack_id=?;";
 
@@ -30,7 +33,8 @@ public class VendingMachineMenuDAO implements AbstractDAO<VendingMachineMenu> {
             while (resultSet.next()) {
                 VendingMachineMenu vendingMachineMenu = new VendingMachineMenu(
                         resultSet.getInt("vending_machine_id"),
-                        resultSet.getInt("snack_id")
+                        resultSet.getInt("snack_id"),
+                        resultSet.getInt("quantity")
                 );
                 vendingMachineMenus.add(vendingMachineMenu);
             }
@@ -52,7 +56,8 @@ public class VendingMachineMenuDAO implements AbstractDAO<VendingMachineMenu> {
             while (resultSet.next()) {
                 vendingMachineMenu = new VendingMachineMenu(
                         resultSet.getInt("vending_machine_id"),
-                        resultSet.getInt("snack_id")
+                        resultSet.getInt("snack_id"),
+                        resultSet.getInt("quantity")
                 );
             }
         } catch (Exception e) {
@@ -67,6 +72,19 @@ public class VendingMachineMenuDAO implements AbstractDAO<VendingMachineMenu> {
         try (PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(CREATE)) {
             statement.setInt(1, vendingMachineMenu.getVendingMachineId());
             statement.setInt(2, vendingMachineMenu.getSnackId());
+            statement.setInt(3, vendingMachineMenu.getQuantity());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void update(VendingMachineMenu vendingMachineMenu) throws  SQLException {
+        try (PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(UPDATE)) {
+            statement.setInt(1, vendingMachineMenu.getQuantity());
+            statement.setInt(2, vendingMachineMenu.getVendingMachineId());
+            statement.setInt(3, vendingMachineMenu.getSnackId());
             statement.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -28,6 +28,11 @@ public class VendingMachineMenuController implements AbstractController<VendingM
     }
 
     @Override
+    public void update(VendingMachineMenu vendingMachineMenu) throws  SQLException {
+        service.update(vendingMachineMenu);
+    }
+
+    @Override
     public void delete(Integer firstId, Integer secondId) throws SQLException {
         service.delete(firstId, secondId);
     }

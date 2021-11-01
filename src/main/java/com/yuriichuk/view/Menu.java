@@ -13,12 +13,11 @@ public final class Menu {
                 "  4: snack                             |   4: UPDATE   \n" +
                 "  5: technician                        |   5: DELETE   \n" +
                 "  6: vending_machine                   |               \n" +
-                "  7: vending_machine_available_snack   |               \n" +
-                "  8: vending_machine_menu              |               \n" +
-                "  9: vending_machine_money_loading     |               \n" +
-                "  10: vending_machine_money_unloading  |               \n" +
-                "  11: vending_machine_snacks_loading   |               \n" +
-                "  12: vending_machine_sold_snack       |               \n"
+                "  7: vending_machine_menu              |               \n" +
+                "  8: vending_machine_money_loading     |               \n" +
+                "  9: vending_machine_money_unloading   |               \n" +
+                "  10: vending_machine_snacks_loading   |               \n" +
+                "  11: vending_machine_sold_snack       |               \n"
         );
     }
 }

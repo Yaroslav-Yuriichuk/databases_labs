@@ -51,11 +51,11 @@ public class View {
         menu.put("64", this::updateVendingMachine);
         menu.put("65", this::deleteVendingMachine);
 
-        menu.put("81", this::getAllVendingMachineMenus);
-        menu.put("82", this::getVendingMachineMenuById);
-        menu.put("83", this::createVendingMachineMenu);
-        menu.put("84", this::updateVendingMachineMenu);
-        menu.put("85", this::deleteVendingMachineMenu);
+        menu.put("71", this::getAllVendingMachineMenus);
+        menu.put("72", this::getVendingMachineMenuById);
+        menu.put("73", this::createVendingMachineMenu);
+        menu.put("74", this::updateVendingMachineMenu);
+        menu.put("75", this::deleteVendingMachineMenu);
     }
 
 
@@ -315,17 +315,28 @@ public class View {
 
     private void createVendingMachineMenu() throws SQLException {
         System.out.println("");
-        vendingMachineMenuController.create(getVendingMachineMenuFromInput());
+        Integer vendingMachineId = readId("Type vending machine id:");
+        Integer snackId = readId("Type snack id");
+        VendingMachineMenu vendingMachineMenu =  getVendingMachineMenuFromInput();
+        vendingMachineMenu.setVendingMachineId(vendingMachineId);
+        vendingMachineMenu.setSnackId(snackId);
+        vendingMachineMenuController.create(vendingMachineMenu);
         System.out.println("");
     }
 
     private void updateVendingMachineMenu() throws SQLException {
         System.out.println("");
-        System.out.println("Not possible");
+        Integer vendingMachineId = readId("Type vending machine id:");
+        Integer snackId = readId("Type snack id");
+        VendingMachineMenu vendingMachineMenu =  getVendingMachineMenuFromInput();
+        vendingMachineMenu.setVendingMachineId(vendingMachineId);
+        vendingMachineMenu.setSnackId(snackId);
+        vendingMachineMenuController.update(vendingMachineMenu);
         System.out.println("");
     }
 
     private void deleteVendingMachineMenu() throws SQLException {
+        System.out.println("");
         Integer vendingMachineId = readId("Type vending machine id:");
         Integer snackId = readId("Type snack id");
         vendingMachineMenuController.delete(vendingMachineId, snackId);
@@ -333,10 +344,10 @@ public class View {
     }
 
     private VendingMachineMenu getVendingMachineMenuFromInput() {
-        Integer vendingMachineId = readId("Type vending machine id:");
-        Integer snackId = readId("Type snack id");
+        System.out.println("Type quantity:");
+        Integer quantity = Integer.parseInt(scanner.nextLine().replaceAll(" ", ""));
 
-        return new VendingMachineMenu(vendingMachineId, snackId);
+        return new VendingMachineMenu(quantity);
     }
 
 
