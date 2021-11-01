@@ -21,7 +21,8 @@ public class View {
     private final VendingMachineSoldSnackController vendingMachineSoldSnackController
             = new VendingMachineSoldSnackController();
     private final VendingMachineMenuController vendingMachineMenuController = new VendingMachineMenuController();
-
+    private final  VendingMachineMoneyLoadingController vendingMachineMoneyLoadingController
+            = new VendingMachineMoneyLoadingController();
 
     public View() {
         menu.put("11", this::getAllAdresses);
@@ -59,6 +60,12 @@ public class View {
         menu.put("73", this::createVendingMachineMenu);
         menu.put("74", this::updateVendingMachineMenu);
         menu.put("75", this::deleteVendingMachineMenu);
+
+        menu.put("81", this::getAllVendingMachineMoneyLoadings);
+        menu.put("82", this::getVendingMachineMoneyLoadingById);
+        menu.put("83", this::createVendingMachineMoneyLoading);
+        menu.put("84", this::updateVendingMachineMoneyLoading);
+        menu.put("85", this::deleteVendingMachineMoneyLoading);
 
         menu.put("111", this::getAllVendingMachineSoldSnacks);
         menu.put("112", this::getVendingMachineSoldSnackById);
@@ -406,6 +413,54 @@ public class View {
         String date = scanner.nextLine().replaceAll(" ", "");
 
         return new VendingMachineSoldSnack(vendingMachineId, snackId, quantity, date);
+    }
+
+
+
+    private void getAllVendingMachineMoneyLoadings() throws SQLException {
+        System.out.println("");
+        vendingMachineMoneyLoadingController.findAll().forEach(System.out::println);
+        System.out.println("");
+    }
+
+    private void getVendingMachineMoneyLoadingById() throws SQLException {
+        System.out.println("");
+        Integer id = readId("Type id:");
+        System.out.println("\n" + vendingMachineMoneyLoadingController.findById(id));
+        System.out.println("");
+    }
+
+    private void createVendingMachineMoneyLoading() throws SQLException {
+        System.out.println("");
+        vendingMachineMoneyLoadingController.create(getVendingMachineMoneyLoadingFromInput());
+        System.out.println("");
+    }
+
+    private void updateVendingMachineMoneyLoading() throws SQLException {
+        System.out.println("");
+        Integer id = readId("Type id:");
+        VendingMachineMoneyLoading vendingMachineMoneyLoading = getVendingMachineMoneyLoadingFromInput();
+        vendingMachineMoneyLoading.setId(id);
+        vendingMachineMoneyLoadingController.update(vendingMachineMoneyLoading);
+        System.out.println("");
+
+    }
+
+    private void deleteVendingMachineMoneyLoading() throws SQLException {
+        Integer id = readId("Type id:");
+        vendingMachineMoneyLoadingController.delete(id);
+        System.out.println("");
+    }
+
+    private VendingMachineMoneyLoading getVendingMachineMoneyLoadingFromInput() {
+        Integer technicianId = readId("Type technician id");
+        Integer vendingMachineId = readId("Type vending machine id:");
+        System.out.println("Type time:");
+        String time = scanner.nextLine().replaceAll(" ", ", ");
+        System.out.println("Type ammount:");
+        Float ammount = Float.parseFloat(scanner.nextLine().replaceAll(" ", ""));
+
+        return new VendingMachineMoneyLoading(technicianId, vendingMachineId, time, ammount);
     }
 
 
