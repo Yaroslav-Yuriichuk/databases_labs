@@ -27,7 +27,7 @@ public class View {
             = new VendingMachineMoneyUnloadingController();
     private final  VendingMachineSnacksLoadingController vendingMachineSnacksLoadingController
             = new VendingMachineSnacksLoadingController();
-
+    private final LoadedSnackController loadedSnackController = new LoadedSnackController();
 
     public View() {
         menu.put("11", this::getAllAdresses);
@@ -41,6 +41,12 @@ public class View {
         menu.put("23", this::createBrand);
         menu.put("24", this::updateBrand);
         menu.put("25", this::deleteBrand);
+
+        menu.put("31", this::getAllLoadedSnacks);
+        menu.put("32", this::getLoadedSnackById);
+        menu.put("33", this::createLoadedSnack);
+        menu.put("34", this::updateLoadedSnack);
+        menu.put("35", this::deleteLoadedSnack);
 
         menu.put("41", this::getAllSnacks);
         menu.put("42", this::getSnackById);
@@ -579,6 +585,59 @@ public class View {
         String time = scanner.nextLine().replaceAll(" ", ", ");
 
         return new VendingMachineSnacksLoading(technicianId, vendingMachineId, time);
+    }
+
+
+
+    private void getAllLoadedSnacks() throws SQLException {
+        System.out.println("");
+        loadedSnackController.findAll().forEach(System.out::println);
+        System.out.println("");
+    }
+
+    private void getLoadedSnackById() throws SQLException {
+        System.out.println("");
+        Integer vendingMachineSnacksLoadingId = readId("Type vending machine snacks loading id:");
+        Integer snackId = readId("Type snack id");
+        System.out.println("\n" + loadedSnackController.findById(vendingMachineSnacksLoadingId, snackId));
+        System.out.println("");
+    }
+
+    private void createLoadedSnack() throws SQLException {
+        System.out.println("");
+        Integer vendingMachineSnacksLoadingId = readId("Type vending machine snacks loading id:");
+        Integer snackId = readId("Type snack id");
+        LoadedSnack loadedSnack =  getLoadedSnackFromInput();
+        loadedSnack.setVendingMachineSnacksLoadingId(vendingMachineSnacksLoadingId);
+        loadedSnack.setSnackId(snackId);
+        loadedSnackController.create(loadedSnack);
+        System.out.println("");
+    }
+
+    private void updateLoadedSnack() throws SQLException {
+        System.out.println("");
+        Integer vendingMachineSnacksLoadingId = readId("Type vending machine snacks loading id:");
+        Integer snackId = readId("Type snack id");
+        LoadedSnack loadedSnack =  getLoadedSnackFromInput();
+        loadedSnack.setVendingMachineSnacksLoadingId(vendingMachineSnacksLoadingId);
+        loadedSnack.setSnackId(snackId);
+        loadedSnackController.update(loadedSnack);
+        System.out.println("");
+    }
+
+    private void deleteLoadedSnack() throws SQLException {
+        System.out.println("");
+        Integer vendingMachineSnacksLoadingId = readId("Type vending machine snacks loading id:");
+        Integer snackId = readId("Type snack id");
+        loadedSnackController.delete(vendingMachineSnacksLoadingId, snackId);
+        System.out.println("");
+    }
+
+    private LoadedSnack getLoadedSnackFromInput() {
+        System.out.println("Type quantity:");
+        Integer quantity = Integer.parseInt(scanner.nextLine().replaceAll(" ", ""));
+
+        return new LoadedSnack(quantity);
     }
 
 
