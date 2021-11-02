@@ -1,16 +1,16 @@
 package com.yuriichuk.controller.implementation;
 
-import com.yuriichuk.controller.AbstractController;
+import com.yuriichuk.controller.Controller;
 import com.yuriichuk.model.Brand;
-import com.yuriichuk.service.implementation.AddressService;
+import com.yuriichuk.service.Service;
 import com.yuriichuk.service.implementation.BrandService;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class BrandController implements AbstractController<Brand> {
+public class BrandController implements Controller<Brand> {
 
-    private final BrandService service = new BrandService();
+    private final Service service = new BrandService();
 
     @Override
     public List<Brand> findAll() throws SQLException {
@@ -19,7 +19,7 @@ public class BrandController implements AbstractController<Brand> {
 
     @Override
     public Brand findById(Integer id) throws SQLException {
-        return service.findById(id);
+        return (Brand) service.findById(id);
     }
 
     @Override

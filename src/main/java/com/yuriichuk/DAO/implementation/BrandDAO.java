@@ -1,7 +1,6 @@
 package com.yuriichuk.DAO.implementation;
 
-import com.yuriichuk.DAO.AbstractDAO;
-import com.yuriichuk.model.Address;
+import com.yuriichuk.DAO.DAO;
 import com.yuriichuk.model.Brand;
 import com.yuriichuk.persistant.ConnectionManager;
 
@@ -11,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BrandDAO implements AbstractDAO<Brand> {
+public class BrandDAO implements DAO<Brand> {
 
     private static final String GET_ALL = "SELECT * FROM yuriichuk.brand";
     private static final String GET_BY_ID = "SELECT * FROM yuriichuk.brand WHERE id=?";

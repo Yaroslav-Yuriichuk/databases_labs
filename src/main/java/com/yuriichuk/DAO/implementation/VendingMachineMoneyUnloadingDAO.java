@@ -1,6 +1,6 @@
 package com.yuriichuk.DAO.implementation;
 
-import com.yuriichuk.DAO.AbstractDAO;
+import com.yuriichuk.DAO.DAO;
 import com.yuriichuk.model.VendingMachineMoneyUnloading;
 import com.yuriichuk.persistant.ConnectionManager;
 
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VendingMachineMoneyUnloadingDAO implements AbstractDAO<VendingMachineMoneyUnloading> {
+public class VendingMachineMoneyUnloadingDAO implements DAO<VendingMachineMoneyUnloading> {
 
     private static final String GET_ALL = "SELECT * FROM yuriichuk.vending_machine_money_unloading";
     private static final String GET_BY_ID = "SELECT * FROM yuriichuk.vending_machine_money_unloading WHERE id=?";

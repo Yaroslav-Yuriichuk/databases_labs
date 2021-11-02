@@ -1,16 +1,16 @@
 package com.yuriichuk.controller.implementation;
 
-import com.yuriichuk.controller.AbstractController;
+import com.yuriichuk.controller.Controller;
 import com.yuriichuk.model.VendingMachineMenu;
+import com.yuriichuk.service.Service;
 import com.yuriichuk.service.implementation.VendingMachineMenuService;
-import com.yuriichuk.service.implementation.VendingMachineService;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class VendingMachineMenuController implements AbstractController<VendingMachineMenu> {
+public class VendingMachineMenuController implements Controller<VendingMachineMenu> {
 
-    private final VendingMachineMenuService service = new VendingMachineMenuService();
+    private final Service service = new VendingMachineMenuService();
 
     @Override
     public List<VendingMachineMenu> findAll() throws SQLException {
@@ -19,7 +19,7 @@ public class VendingMachineMenuController implements AbstractController<VendingM
 
     @Override
     public VendingMachineMenu findById(Integer firstId, Integer secondId) throws SQLException {
-        return service.findById(firstId, secondId);
+        return (VendingMachineMenu) service.findById(firstId, secondId);
     }
 
     @Override

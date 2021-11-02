@@ -1,18 +1,16 @@
 package com.yuriichuk.controller.implementation;
 
-import com.yuriichuk.controller.AbstractController;
-import com.yuriichuk.model.VendingMachineMoneyLoading;
+import com.yuriichuk.controller.Controller;
 import com.yuriichuk.model.VendingMachineMoneyUnloading;
-import com.yuriichuk.service.implementation.VendingMachineMoneyLoadingService;
+import com.yuriichuk.service.Service;
 import com.yuriichuk.service.implementation.VendingMachineMoneyUnloadingService;
-import com.yuriichuk.service.implementation.VendingMachineService;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class VendingMachineMoneyUnloadingController implements AbstractController<VendingMachineMoneyUnloading> {
+public class VendingMachineMoneyUnloadingController implements Controller<VendingMachineMoneyUnloading> {
 
-    private final VendingMachineMoneyUnloadingService service = new VendingMachineMoneyUnloadingService();
+    private final Service service = new VendingMachineMoneyUnloadingService();
 
     @Override
     public List<VendingMachineMoneyUnloading> findAll() throws SQLException {
@@ -21,7 +19,7 @@ public class VendingMachineMoneyUnloadingController implements AbstractControlle
 
     @Override
     public VendingMachineMoneyUnloading findById(Integer id) throws SQLException {
-        return service.findById(id);
+        return (VendingMachineMoneyUnloading) service.findById(id);
     }
 
     @Override

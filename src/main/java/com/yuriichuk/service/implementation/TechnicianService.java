@@ -1,15 +1,16 @@
 package com.yuriichuk.service.implementation;
 
+import com.yuriichuk.DAO.DAO;
 import com.yuriichuk.DAO.implementation.TechnicianDAO;
 import com.yuriichuk.model.Technician;
-import com.yuriichuk.service.AbstractService;
+import com.yuriichuk.service.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class TechnicianService implements AbstractService<Technician> {
+public class TechnicianService implements Service<Technician> {
 
-    private final TechnicianDAO dao = new TechnicianDAO();
+    private final DAO dao = new TechnicianDAO();
 
     @Override
     public List<Technician> findAll() throws SQLException {
@@ -18,7 +19,7 @@ public class TechnicianService implements AbstractService<Technician> {
 
     @Override
     public Technician findById(Integer id) throws SQLException {
-        return dao.findById(id);
+        return (Technician) dao.findById(id);
     }
 
     @Override

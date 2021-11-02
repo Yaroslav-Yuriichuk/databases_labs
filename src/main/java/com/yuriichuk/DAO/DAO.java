@@ -1,9 +1,9 @@
-package com.yuriichuk.controller;
+package com.yuriichuk.DAO;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface AbstractController<E> {
+public interface DAO<E> {
 
     List<E> findAll() throws SQLException;
 

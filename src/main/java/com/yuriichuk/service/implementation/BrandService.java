@@ -1,16 +1,16 @@
 package com.yuriichuk.service.implementation;
 
-import com.yuriichuk.DAO.implementation.AddressDAO;
+import com.yuriichuk.DAO.DAO;
 import com.yuriichuk.DAO.implementation.BrandDAO;
-import com.yuriichuk.controller.AbstractController;
 import com.yuriichuk.model.Brand;
+import com.yuriichuk.service.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class BrandService implements AbstractController<Brand> {
+public class BrandService implements Service<Brand> {
 
-    private final BrandDAO dao = new BrandDAO();
+    private final DAO dao = new BrandDAO();
 
     @Override
     public List<Brand> findAll() throws SQLException {
@@ -19,7 +19,7 @@ public class BrandService implements AbstractController<Brand> {
 
     @Override
     public Brand findById(Integer id) throws SQLException {
-        return dao.findById(id);
+        return (Brand) dao.findById(id);
     }
 
     @Override

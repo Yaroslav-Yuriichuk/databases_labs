@@ -1,15 +1,16 @@
 package com.yuriichuk.service.implementation;
 
+import com.yuriichuk.DAO.DAO;
 import com.yuriichuk.DAO.implementation.SnackDAO;
 import com.yuriichuk.model.Snack;
-import com.yuriichuk.service.AbstractService;
+import com.yuriichuk.service.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class SnackService implements AbstractService<Snack> {
+public class SnackService implements Service<Snack> {
 
-    private final SnackDAO dao = new SnackDAO();
+    private final DAO dao = new SnackDAO();
 
     @Override
     public List<Snack> findAll() throws SQLException {
@@ -18,7 +19,7 @@ public class SnackService implements AbstractService<Snack> {
 
     @Override
     public Snack findById(Integer id) throws SQLException {
-        return dao.findById(id);
+        return (Snack) dao.findById(id);
     }
 
     @Override

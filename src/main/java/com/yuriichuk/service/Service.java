@@ -1,9 +1,9 @@
-package com.yuriichuk.DAO;
+package com.yuriichuk.service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface AbstractDAO<E> {
+public interface Service<E> {
 
     List<E> findAll() throws SQLException;
 
@@ -22,4 +22,5 @@ public interface AbstractDAO<E> {
     default void delete(Integer id) throws SQLException {}
 
     default void delete(Integer firstId, Integer secondId) throws SQLException {}
+
 }

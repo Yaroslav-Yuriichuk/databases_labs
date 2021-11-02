@@ -1,9 +1,9 @@
-package com.yuriichuk.service;
+package com.yuriichuk.controller;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface AbstractService<E> {
+public interface Controller<E> {
 
     List<E> findAll() throws SQLException;
 
@@ -22,5 +22,4 @@ public interface AbstractService<E> {
     default void delete(Integer id) throws SQLException {}
 
     default void delete(Integer firstId, Integer secondId) throws SQLException {}
-
 }

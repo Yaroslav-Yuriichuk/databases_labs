@@ -1,15 +1,16 @@
 package com.yuriichuk.service.implementation;
 
+import com.yuriichuk.DAO.DAO;
 import com.yuriichuk.DAO.implementation.AddressDAO;
 import com.yuriichuk.model.Address;
-import com.yuriichuk.service.AbstractService;
+import com.yuriichuk.service.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class AddressService implements AbstractService<Address> {
+public class AddressService implements Service<Address> {
 
-    private final AddressDAO dao = new AddressDAO();
+    private final DAO dao = new AddressDAO();
 
     @Override
     public List<Address> findAll() throws SQLException {
@@ -18,7 +19,7 @@ public class AddressService implements AbstractService<Address> {
 
     @Override
     public Address findById(Integer id) throws SQLException {
-        return dao.findById(id);
+        return (Address) dao.findById(id);
     }
 
     @Override
@@ -38,6 +39,6 @@ public class AddressService implements AbstractService<Address> {
 
     @Override
     public void delete(Integer firstId, Integer secondId) throws SQLException {
-        AbstractService.super.delete(firstId, secondId);
+        Service.super.delete(firstId, secondId);
     }
 }

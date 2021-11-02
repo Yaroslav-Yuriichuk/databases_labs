@@ -1,17 +1,16 @@
 package com.yuriichuk.service.implementation;
 
-import com.yuriichuk.DAO.implementation.VendingMachineMoneyLoadingDAO;
+import com.yuriichuk.DAO.DAO;
 import com.yuriichuk.DAO.implementation.VendingMachineMoneyUnloadingDAO;
-import com.yuriichuk.model.VendingMachineMoneyLoading;
 import com.yuriichuk.model.VendingMachineMoneyUnloading;
-import com.yuriichuk.service.AbstractService;
+import com.yuriichuk.service.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class VendingMachineMoneyUnloadingService implements AbstractService<VendingMachineMoneyUnloading> {
+public class VendingMachineMoneyUnloadingService implements Service<VendingMachineMoneyUnloading> {
 
-    private final VendingMachineMoneyUnloadingDAO dao = new VendingMachineMoneyUnloadingDAO();
+    private final DAO dao = new VendingMachineMoneyUnloadingDAO();
 
     @Override
     public List<VendingMachineMoneyUnloading> findAll() throws SQLException {
@@ -20,7 +19,7 @@ public class VendingMachineMoneyUnloadingService implements AbstractService<Vend
 
     @Override
     public VendingMachineMoneyUnloading findById(Integer id) throws SQLException {
-        return dao.findById(id);
+        return (VendingMachineMoneyUnloading) dao.findById(id);
     }
 
     @Override

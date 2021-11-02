@@ -1,7 +1,6 @@
 package com.yuriichuk.DAO.implementation;
 
-import com.yuriichuk.DAO.AbstractDAO;
-import com.yuriichuk.model.VendingMachineMenu;
+import com.yuriichuk.DAO.DAO;
 import com.yuriichuk.model.VendingMachineSoldSnack;
 import com.yuriichuk.persistant.ConnectionManager;
 
@@ -11,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VendingMachineSoldSnackDAO implements AbstractDAO<VendingMachineSoldSnack> {
+public class VendingMachineSoldSnackDAO implements DAO<VendingMachineSoldSnack> {
 
     private static final String GET_ALL = "SELECT * FROM yuriichuk.vending_machine_sold_snack";
     private static final String GET_BY_ID = "SELECT * FROM yuriichuk.vending_machine_sold_snack" +

@@ -1,6 +1,7 @@
 package com.yuriichuk.view;
 
 import com.yuriichuk.DAO.implementation.VendingMachineMenuDAO;
+import com.yuriichuk.controller.Controller;
 import com.yuriichuk.controller.implementation.*;
 import com.yuriichuk.model.*;
 
@@ -13,21 +14,21 @@ public class View {
     private final static Scanner scanner = new Scanner(System.in);
     private final Map<String, Printable> menu = new HashMap<String, Printable>();
 
-    private final AddressController addressController = new AddressController();
-    private final BrandController brandController = new BrandController();
-    private final SnackController snackController = new SnackController();
-    private final TechnicianController technicianController = new TechnicianController();
-    private final VendingMachineController vendingMachineController = new VendingMachineController();
-    private final VendingMachineSoldSnackController vendingMachineSoldSnackController
+    private final Controller addressController = new AddressController();
+    private final Controller brandController = new BrandController();
+    private final Controller snackController = new SnackController();
+    private final Controller technicianController = new TechnicianController();
+    private final Controller vendingMachineController = new VendingMachineController();
+    private final Controller vendingMachineSoldSnackController
             = new VendingMachineSoldSnackController();
-    private final VendingMachineMenuController vendingMachineMenuController = new VendingMachineMenuController();
-    private final  VendingMachineMoneyLoadingController vendingMachineMoneyLoadingController
+    private final Controller vendingMachineMenuController = new VendingMachineMenuController();
+    private final  Controller vendingMachineMoneyLoadingController
             = new VendingMachineMoneyLoadingController();
-    private final  VendingMachineMoneyUnloadingController vendingMachineMoneyUnloadingController
+    private final  Controller vendingMachineMoneyUnloadingController
             = new VendingMachineMoneyUnloadingController();
-    private final  VendingMachineSnacksLoadingController vendingMachineSnacksLoadingController
+    private final  Controller vendingMachineSnacksLoadingController
             = new VendingMachineSnacksLoadingController();
-    private final LoadedSnackController loadedSnackController = new LoadedSnackController();
+    private final Controller loadedSnackController = new LoadedSnackController();
 
     public View() {
         menu.put("11", this::getAllAdresses);

@@ -1,17 +1,16 @@
 package com.yuriichuk.service.implementation;
 
+import com.yuriichuk.DAO.DAO;
 import com.yuriichuk.DAO.implementation.LoadedSnackDAO;
-import com.yuriichuk.DAO.implementation.VendingMachineMenuDAO;
 import com.yuriichuk.model.LoadedSnack;
-import com.yuriichuk.model.VendingMachineMenu;
-import com.yuriichuk.service.AbstractService;
+import com.yuriichuk.service.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class LoadedSnackService implements AbstractService<LoadedSnack> {
+public class LoadedSnackService implements Service<LoadedSnack> {
 
-    private final LoadedSnackDAO dao = new LoadedSnackDAO();
+    private final DAO dao = new LoadedSnackDAO();
 
     @Override
     public List<LoadedSnack> findAll() throws SQLException {
@@ -20,7 +19,7 @@ public class LoadedSnackService implements AbstractService<LoadedSnack> {
 
     @Override
     public LoadedSnack findById(Integer firstId, Integer secondId) throws SQLException {
-        return dao.findById(firstId, secondId);
+        return (LoadedSnack) dao.findById(firstId, secondId);
     }
 
     @Override
