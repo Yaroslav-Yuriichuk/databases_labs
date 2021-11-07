@@ -13,6 +13,34 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.4</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <checkstyleRules>
+                        <module name="Checker">
+                            <module name="LineLength">
+                                <property name="max" value="120" />
+                            </module>
+                        </module>
+                    </checkstyleRules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
@@ -27,5 +55,25 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.14.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
