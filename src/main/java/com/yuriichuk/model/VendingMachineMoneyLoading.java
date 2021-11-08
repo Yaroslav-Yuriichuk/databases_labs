@@ -16,6 +16,7 @@ public class VendingMachineMoneyLoading {
     private BigDecimal ammount;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;

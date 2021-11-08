@@ -9,9 +9,10 @@ import java.util.Objects;
 public class Brand {
     private Integer id;
     private String name;
-    private Date foundationDate;
+    private String foundationDate;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;
@@ -33,11 +34,11 @@ public class Brand {
 
     @Basic
     @Column(name = "foundation_data")
-    public Date getFoundationDate() {
+    public String getFoundationDate() {
         return foundationDate;
     }
 
-    public void setFoundationDate(Date foundationDate) {
+    public void setFoundationDate(String foundationDate) {
         this.foundationDate = foundationDate;
     }
 
@@ -49,9 +50,24 @@ public class Brand {
         return Objects.equals(id, brand.id) && Objects.equals(name, brand.name) && Objects.equals(foundationDate, brand.foundationDate);
     }
 
+    public Brand() {}
+
+    public Brand(String name, String foundationDate) {
+        this.name = name;
+        this.foundationDate = foundationDate;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id, name, foundationDate);
     }
 
+    @Override
+    public String toString() {
+        return "Brand {" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", foundationDate='" + foundationDate + '\'' +
+                '}';
+    }
 }

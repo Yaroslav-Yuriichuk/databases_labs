@@ -6,16 +6,16 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@IdClass(SnackPK.class)
 public class Snack {
     private Integer id;
     private String name;
-    private BigDecimal price;
+    private Float price;
     private Integer weight;
     private Integer callories;
     private Integer brandId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;
@@ -37,11 +37,11 @@ public class Snack {
 
     @Basic
     @Column(name = "price")
-    public BigDecimal getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
@@ -65,7 +65,6 @@ public class Snack {
         this.callories = callories;
     }
 
-    @Id
     @Column(name = "brand_id")
     public Integer getBrandId() {
         return brandId;
@@ -88,4 +87,25 @@ public class Snack {
         return Objects.hash(id, name, price, weight, callories, brandId);
     }
 
+    public Snack() {}
+
+    public Snack(String name, Float price, Integer weight, Integer callories, Integer brandId) {
+        this.name = name;
+        this.price = price;
+        this.weight = weight;
+        this.callories = callories;
+        this.brandId = brandId;
+    }
+
+    @Override
+    public String toString() {
+        return "Snack {" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", weight=" + weight +
+                ", callories=" + callories +
+                ", brandId=" + brandId +
+                '}';
+    }
 }

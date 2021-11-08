@@ -1,9 +1,6 @@
 package com.yuriichuk.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +12,7 @@ public class Address {
     private String building;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;
@@ -75,5 +73,25 @@ public class Address {
     @Override
     public int hashCode() {
         return Objects.hash(id, region, cityVillage, street, building);
+    }
+
+    public Address() {}
+
+    public Address(String region, String cityVillage, String street, String building) {
+        this.region = region;
+        this.cityVillage = cityVillage;
+        this.street = street;
+        this.building = building;
+    }
+
+    @Override
+    public String toString() {
+        return "Address {" +
+                "id=" + id +
+                ", region='" + region + '\'' +
+                ", cityVillage='" + cityVillage + '\'' +
+                ", street='" + street + '\'' +
+                ", building='" + building + '\'' +
+                '}';
     }
 }

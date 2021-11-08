@@ -12,6 +12,7 @@ public class VendingMachine {
     private Integer addressId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;

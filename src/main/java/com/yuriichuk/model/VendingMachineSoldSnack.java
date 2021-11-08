@@ -16,6 +16,7 @@ public class VendingMachineSoldSnack {
     private Date date;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer getId() {
         return id;
