@@ -7,13 +7,12 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "vending_machine_sold_snack", schema = "yuriichuk", catalog = "")
-@IdClass(VendingMachineSoldSnackPK.class)
 public class VendingMachineSoldSnack {
     private Integer id;
     private Integer vendingMachineId;
     private Integer snackId;
     private Integer quantity;
-    private Date date;
+    private String date;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +25,6 @@ public class VendingMachineSoldSnack {
         this.id = id;
     }
 
-    @Id
     @Column(name = "vending_machine_id")
     public Integer getVendingMachineId() {
         return vendingMachineId;
@@ -36,7 +34,6 @@ public class VendingMachineSoldSnack {
         this.vendingMachineId = vendingMachineId;
     }
 
-    @Id
     @Column(name = "snack_id")
     public Integer getSnackId() {
         return snackId;
@@ -58,11 +55,11 @@ public class VendingMachineSoldSnack {
 
     @Basic
     @Column(name = "date")
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -79,4 +76,24 @@ public class VendingMachineSoldSnack {
         return Objects.hash(id, vendingMachineId, snackId, quantity, date);
     }
 
+    public VendingMachineSoldSnack() {}
+
+    public VendingMachineSoldSnack(Integer vendingMachineId,
+                                   Integer snackId, Integer quantity, String date) {
+        this.vendingMachineId = vendingMachineId;
+        this.snackId = snackId;
+        this.quantity = quantity;
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "VendingMachineSoldSnack {" +
+                "id=" + id +
+                ", vendingMachineId=" + vendingMachineId +
+                ", snackId=" + snackId +
+                ", quantity=" + quantity +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

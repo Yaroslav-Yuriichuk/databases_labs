@@ -1,24 +1,14 @@
 package com.yuriichuk.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class VendingMachineSoldSnackPK implements Serializable {
-    private Integer id;
+public class VendingMachineMenuPK implements Serializable {
     private Integer vendingMachineId;
     private Integer snackId;
-
-    @Column(name = "id")
-    @Id
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     @Column(name = "vending_machine_id")
     @Id
@@ -26,8 +16,8 @@ public class VendingMachineSoldSnackPK implements Serializable {
         return vendingMachineId;
     }
 
-    public void setVendingMachineId(Integer vendingMachineId) {
-        this.vendingMachineId = vendingMachineId;
+    public void setVendingMachineId(Integer vendingMachineSnacksLoadingId) {
+        this.vendingMachineId = vendingMachineSnacksLoadingId;
     }
 
     @Column(name = "snack_id")
@@ -44,12 +34,19 @@ public class VendingMachineSoldSnackPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VendingMachineSoldSnackPK that = (VendingMachineSoldSnackPK) o;
-        return Objects.equals(id, that.id) && Objects.equals(vendingMachineId, that.vendingMachineId) && Objects.equals(snackId, that.snackId);
+        VendingMachineMenuPK that = (VendingMachineMenuPK) o;
+        return vendingMachineId.equals(that.vendingMachineId) && snackId.equals(that.snackId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, vendingMachineId, snackId);
+        return Objects.hash(vendingMachineId, snackId);
+    }
+
+    public VendingMachineMenuPK() {}
+
+    public VendingMachineMenuPK(Integer vendingMachineId, Integer snackId) {
+        this.vendingMachineId = vendingMachineId;
+        this.snackId = snackId;
     }
 }

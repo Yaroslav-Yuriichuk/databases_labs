@@ -53,4 +53,19 @@ public class LoadedSnack {
     public int hashCode() {
         return Objects.hash(vendingMachineSnacksLoadingId, snackId, quantity);
     }
+
+    public LoadedSnack() {}
+
+    public LoadedSnack(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "LoadedSnack {" +
+                "vendingMachineSnacksLoadingId=" + vendingMachineSnacksLoadingId +
+                ", snackId=" + snackId +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

@@ -41,4 +41,11 @@ public class LoadedSnackPK implements Serializable {
     public int hashCode() {
         return Objects.hash(vendingMachineSnacksLoadingId, snackId);
     }
+
+    public LoadedSnackPK() {}
+
+    public LoadedSnackPK(Integer vendingMachineSnacksLoadingId, Integer snackId) {
+        this.vendingMachineSnacksLoadingId = vendingMachineSnacksLoadingId;
+        this.snackId = snackId;
+    }
 }

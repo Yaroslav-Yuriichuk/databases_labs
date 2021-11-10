@@ -20,6 +20,7 @@
         <mapping class="com.yuriichuk.model.VendingMachineMoneyUnloading"/>
         <mapping class="com.yuriichuk.model.VendingMachineSnacksLoading"/>
         <mapping class="com.yuriichuk.model.VendingMachineSoldSnack"/>
+        <mapping class="com.yuriichuk.model.VendingMachineMenu"/>
         <!-- <property name="connection.username"/> -->
         <!-- <property name="connection.password"/> -->
 

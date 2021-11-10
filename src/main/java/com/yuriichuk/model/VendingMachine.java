@@ -55,4 +55,19 @@ public class VendingMachine {
         return Objects.hash(id, coordinates, addressId);
     }
 
+    public VendingMachine() {}
+
+    public VendingMachine(String coordinates, Integer addressId) {
+        this.coordinates = coordinates;
+        this.addressId = addressId;
+    }
+
+    @Override
+    public String toString() {
+        return "VendingMachine {" +
+                "id=" + id +
+                ", coordinates='" + coordinates + '\'' +
+                ", addressId=" + addressId +
+                '}';
+    }
 }

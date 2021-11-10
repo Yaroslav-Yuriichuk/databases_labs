@@ -10,7 +10,7 @@ public class Technician {
     private String firstName;
     private String lastName;
     private Integer age;
-    private Date workEntryDate;
+    private String workEntryDate;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,11 +55,11 @@ public class Technician {
 
     @Basic
     @Column(name = "work_entry_date")
-    public Date getWorkEntryDate() {
+    public String getWorkEntryDate() {
         return workEntryDate;
     }
 
-    public void setWorkEntryDate(Date workEntryDate) {
+    public void setWorkEntryDate(String workEntryDate) {
         this.workEntryDate = workEntryDate;
     }
 
@@ -74,5 +74,25 @@ public class Technician {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, age, workEntryDate);
+    }
+
+    public Technician() {}
+
+    public Technician(String firstName, String lastName, Integer age, String workEntryDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.workEntryDate = workEntryDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Technician {" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", workEntryDate='" + workEntryDate + '\'' +
+                '}';
     }
 }

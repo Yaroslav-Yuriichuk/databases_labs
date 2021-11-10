@@ -7,13 +7,12 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "vending_machine_money_unloading", schema = "yuriichuk", catalog = "")
-@IdClass(VendingMachineMoneyUnloadingPK.class)
 public class VendingMachineMoneyUnloading {
     private Integer id;
     private Integer technicianId;
     private Integer vendingMachineId;
-    private Timestamp time;
-    private BigDecimal ammount;
+    private String time;
+    private Float ammount;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +25,6 @@ public class VendingMachineMoneyUnloading {
         this.id = id;
     }
 
-    @Id
     @Column(name = "technician_id")
     public Integer getTechnicianId() {
         return technicianId;
@@ -36,7 +34,6 @@ public class VendingMachineMoneyUnloading {
         this.technicianId = technicianId;
     }
 
-    @Id
     @Column(name = "vending_machine_id")
     public Integer getVendingMachineId() {
         return vendingMachineId;
@@ -48,21 +45,21 @@ public class VendingMachineMoneyUnloading {
 
     @Basic
     @Column(name = "time")
-    public Timestamp getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
     @Basic
     @Column(name = "ammount")
-    public BigDecimal getAmmount() {
+    public Float getAmmount() {
         return ammount;
     }
 
-    public void setAmmount(BigDecimal ammount) {
+    public void setAmmount(Float ammount) {
         this.ammount = ammount;
     }
 
@@ -79,4 +76,24 @@ public class VendingMachineMoneyUnloading {
         return Objects.hash(id, technicianId, vendingMachineId, time, ammount);
     }
 
+    public VendingMachineMoneyUnloading() {}
+
+    public VendingMachineMoneyUnloading(Integer technicianId,
+                                        Integer vendingMachineId, String time, Float ammount) {
+        this.technicianId = technicianId;
+        this.vendingMachineId = vendingMachineId;
+        this.time = time;
+        this.ammount = ammount;
+    }
+
+    @Override
+    public String toString() {
+        return "VendingMachineMoneyUnloading {" +
+                "id=" + id +
+                ", technicianId=" + technicianId +
+                ", vendingMachineId=" + vendingMachineId +
+                ", time='" + time + '\'' +
+                ", ammount=" + ammount +
+                '}';
+    }
 }
