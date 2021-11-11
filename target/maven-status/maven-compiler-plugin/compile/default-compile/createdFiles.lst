@@ -1,0 +1,12 @@
+com\yuriichuk\controller\implementation\AddressController.class
+com\yuriichuk\App.class
+com\yuriichuk\DAO\AbstractDAO.class
+com\yuriichuk\view\Printable.class
+com\yuriichuk\service\AbstractService.class
+com\yuriichuk\view\View.class
+com\yuriichuk\model\Address.class
+com\yuriichuk\persistant\ConnectionManager.class
+com\yuriichuk\view\Menu.class
+com\yuriichuk\service\implementation\AddressService.class
+com\yuriichuk\DAO\implementation\AddressDAO.class
+com\yuriichuk\controller\AbstractController.class
