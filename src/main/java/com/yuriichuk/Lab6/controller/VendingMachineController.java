@@ -1,10 +1,7 @@
 package com.yuriichuk.Lab6.controller;
 
-import com.yuriichuk.Lab6.dto.SnackDTO;
 import com.yuriichuk.Lab6.dto.VendingMachineDTO;
-import com.yuriichuk.Lab6.mapper.SnackMapper;
 import com.yuriichuk.Lab6.mapper.VendingMachineMapper;
-import com.yuriichuk.Lab6.model.Snack;
 import com.yuriichuk.Lab6.model.VendingMachine;
 import com.yuriichuk.Lab6.service.VendingMachineService;
 import lombok.AllArgsConstructor;

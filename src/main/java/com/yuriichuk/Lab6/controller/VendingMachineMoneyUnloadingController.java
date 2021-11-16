@@ -53,7 +53,8 @@ public class VendingMachineMoneyUnloadingController {
     public ResponseEntity<VendingMachineMoneyUnloadingDTO> updateVendingMachineMoneyUnloading(
             final @RequestBody VendingMachineMoneyUnloadingDTO vendingMachineMoneyUnloadingDTO) {
         VendingMachineMoneyUnloading vendingMachineMoneyUnloading
-                = vendingMachineMoneyUnloadingService.getVendingMachineMoneyUnloadingById(vendingMachineMoneyUnloadingDTO.getId());
+                = vendingMachineMoneyUnloadingService.getVendingMachineMoneyUnloadingById(
+                        vendingMachineMoneyUnloadingDTO.getId());
         if (vendingMachineMoneyUnloading == null) {
             return new ResponseEntity<VendingMachineMoneyUnloadingDTO>(HttpStatus.NOT_FOUND);
         }
