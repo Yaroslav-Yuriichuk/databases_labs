@@ -6,7 +6,7 @@ CREATE DEFINER = `root`@`localhost` TRIGGER `yuriichuk_7_72`.`users_VALIDATE_LOG
 BEGIN
 	IF (new.login RLIKE "^[0-9]" OR LENGTH(new.login) < 6) THEN
 		SIGNAL SQLSTATE '45000'
-		SET MESSAGE_TEXT = "FK constraint. Login mustn't start with number and be shorter than 6 characters.";
+		SET MESSAGE_TEXT = "Login mustn't start with number and be shorter than 6 characters.";
     END IF;
 END$$
 DELIMITER ;
