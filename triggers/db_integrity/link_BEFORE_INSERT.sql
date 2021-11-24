@@ -1,0 +1,12 @@
+DROP TRIGGER IF EXISTS `yuriichuk_7_72`.`link_BEFORE_INSERT`;
+
+DELIMITER $$
+USE `yuriichuk_7_72`$$
+CREATE DEFINER=`root`@`localhost` TRIGGER `link_BEFORE_INSERT` BEFORE INSERT ON `link` FOR EACH ROW BEGIN
+	IF NOT new.book_id IN (
+		SELECT id FROM book) THEN
+        SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = "FK constraint. Referenced book NOT FOUND.";
+	END IF;
+END$$
+DELIMITER ;
